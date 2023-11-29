@@ -13,12 +13,12 @@
 | first_name_kana     | string     | null: false                    |
 | birth_date          | date       | null: false                    |
 | item_id             | references | null: false, foreign_key: true |
-| shipping_address_id | references | null: false, foreign_key: true |
+| purchase_record_id  | references | null: false, foreign_key: true |
 
 ### Association
 
 - has_many :items
-- has_many :shipping_addresses
+- has_many :purchase_records
 
 
 ## items テーブル
@@ -34,13 +34,27 @@
 | item_scheduled_delivery  | string     | null: false                    |
 | item_price               | integer    | null: false                    |
 | user_id                  | references | null: false, foreign_key: true |
-| shipping_address_id      | references | null: false, foreign_key: true |
+| purchase_record_id       | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :shipping_address
+- has_one :purchase_record
 
+
+## purchase_records テーブル
+
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| item_id             | references | null: false, foreign_key: true |
+| user_id             | references | null: false, foreign_key: true |
+| shipping_address_id | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- belongs_to :shipping_address
 
 
 ## shipping_addresses テーブル
@@ -53,11 +67,9 @@
 | addresses    | text       | null: false                    |
 | building     | text       | null: true                     |
 | phone_number | integer    | null: false                    |
-| user_id      | references | null: false, foreign_key: true |
-| item_id      | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
+- belongs_to :purchase_record
+
 
