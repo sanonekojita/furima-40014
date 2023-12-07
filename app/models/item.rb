@@ -11,6 +11,8 @@ class Item < ApplicationRecord
   belongs_to :scheduled_delivery, class_name: 'ShippingFeeStatus'
 
   validates :image, :item_name, :item_info, :item_price, presence: true
+  # validates :item_name, presence: true, length: { minimum: 1, maximum: 40 }
+  # validates :item_info, presence: true, length: { minimum: 1, maximum: 1000 }
 
   DECIMAL_REGEX = /\A\d+(\.\d+)?\s*\z/
   validates :item_price, numericality: {
