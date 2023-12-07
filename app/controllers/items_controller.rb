@@ -20,12 +20,15 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:item_name, :item_info, :category_id, :sales_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id, :item_price, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:item_name, :item_info,
+                                 :category_id, :sales_status_id,
+                                 :shipping_fee_status_id, :prefecture_id,
+                                 :scheduled_delivery_id, :item_price, :image).merge(user_id: current_user.id)
   end
 
   def move_to_sign_in
-    unless user_signed_in?
-      redirect_to new_user_session_path, notice: "You need to sign in or sign up before continuing."
-    end
+    return if user_signed_in?
+
+    redirect_to new_user_session_path, notice: 'You need to sign in or sign up before continuing.'
   end
 end

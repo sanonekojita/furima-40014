@@ -16,24 +16,24 @@ class Item < ApplicationRecord
 
   DECIMAL_REGEX = /\A\d+(\.\d+)?\s*\z/
   validates :item_price, numericality: {
-  only_integer: true,
-  greater_than_or_equal_to: 300,
-  less_than_or_equal_to: 9999999,
-  message: ->(object, data) do
-    if data[:value].blank?
-      'is not a number'
-    elsif data[:value].to_i.to_s == data[:value].to_s && data[:value].to_i < 300
-      "must be greater than or equal to 300"
-    elsif data[:value].to_i.to_s == data[:value].to_s && data[:value].to_i > 9999999
-      "must be less than or equal to 9999999"
-    elsif data[:value].to_s.match?(DECIMAL_REGEX)
-      'must be an integer'
-    else
-      'is not a number'
-    end
-  end
+    only_integer: true,
+    greater_than_or_equal_to: 300,
+    less_than_or_equal_to: 9_999_999,
+    message: lambda do |_object, data|
+               if data[:value].blank?
+                 'is not a number'
+               elsif data[:value].to_i.to_s == data[:value].to_s && data[:value].to_i < 300
+                 'must be greater than or equal to 300'
+               elsif data[:value].to_i.to_s == data[:value].to_s && data[:value].to_i > 9_999_999
+                 'must be less than or equal to 9999999'
+               elsif data[:value].to_s.match?(DECIMAL_REGEX)
+                 'must be an integer'
+               else
+                 'is not a number'
+               end
+             end
   }
 
-  validates :category_id, :sales_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id, numericality: { other_than: 1 , message: "can't be blank"}
-
+  validates :category_id, :sales_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id,
+            numericality: { other_than: 1, message: "can't be blank" }
 end
