@@ -1,7 +1,6 @@
 function post (){
   const itemPrice  = document.getElementById("item-price");
   itemPrice.addEventListener("keyup", () => {
-    console.log(itemPrice.value);
     const addTaxPrice  = document.getElementById("add-tax-price");
     const profit  = document.getElementById("profit");
 
