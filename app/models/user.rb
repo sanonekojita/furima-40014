@@ -25,4 +25,7 @@ class User < ApplicationRecord
   validates :first_name_kana, presence: true
   FIRST_NAME_KANA_REGEX = /\A[ァ-ヶー－]+\z/
   validates_format_of :first_name_kana, with: FIRST_NAME_KANA_REGEX, message: 'is invalid. Input full-width katakana characters'
+
+  has_many :items
+  has_many :purchase_records
 end
