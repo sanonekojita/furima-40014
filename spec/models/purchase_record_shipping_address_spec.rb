@@ -56,10 +56,15 @@ RSpec.describe PurchaseRecordShippingAddress, type: :model do
         @purchase_record_shipping_address.valid?
         expect(@purchase_record_shipping_address.errors.full_messages).to include("Phone number can't be blank")
       end
-      it 'phone_numberが10文字以下だと購入できない' do
-        @purchase_record_shipping_address.phone_number = '1234567'
+      it 'phone_numberが9桁以下だと購入できない' do
+        @purchase_record_shipping_address.phone_number = '123456789'
         @purchase_record_shipping_address.valid?
         expect(@purchase_record_shipping_address.errors.full_messages).to include('Phone number is too short')
+      end
+      it 'phone_numberが12桁以上だと購入できない' do
+        @purchase_record_shipping_address.phone_number = '111111111111'
+        @purchase_record_shipping_address.valid?
+        expect(@purchase_record_shipping_address.errors.full_messages).to include('Phone number is too long')
       end
       it 'phone_numberが0~9以外を含むと購入できない' do
         @purchase_record_shipping_address.phone_number = 'abcdefghijk'

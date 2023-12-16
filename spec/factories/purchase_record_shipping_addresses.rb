@@ -10,6 +10,6 @@ FactoryBot.define do
     city          { Faker::Address.city }
     addresses     { Faker::Address.street_address }
     building      { Faker::Address.secondary_address }
-    phone_number  { Faker::Number.number(digits: rand(11..12)) }
+    phone_number  { Faker::Number.number(digits: rand(10..11)) }
   end
 end
