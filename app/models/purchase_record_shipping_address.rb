@@ -1,14 +1,11 @@
 class PurchaseRecordShippingAddress
   include ActiveModel::Model
   attr_accessor :postal_code, :prefecture_id, :city, :addresses, :building, :phone_number, :item_id, :user_id,
-                :purchase_record_id, :token
+                :token
 
   with_options presence: true do
     validates :token, :user_id, :item_id
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Enter it as follows (e.g. 123-4567)' }
-  end
-
-  with_options presence: true do
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city, :addresses
     validates :phone_number, length: { minimum: 10, maximum: 11, too_short: 'is too short', too_long: 'is too long' },
