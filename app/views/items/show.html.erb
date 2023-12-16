@@ -33,7 +33,7 @@
 
     <% if user_signed_in? && current_user.id != @item.user_id %>
       <% unless PurchaseRecord.exists?(item_id: @item.id) %>
-        <%= link_to "購入画面に進む", purchase_records_path(item_id: @item.id) ,class:"item-red-btn"%>
+        <%= link_to "購入画面に進む", item_purchase_records_path(item_id: @item.id) ,class:"item-red-btn"%>
       <% end %>
     <% end %>
 
