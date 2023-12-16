@@ -1,9 +1,9 @@
 class PurchaseRecordsController < ApplicationController
+  before_action :set_item, only: [:index, :create]
   before_action :move_to_sign_in
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-    @item = Item.find(params[:item_id])
     @purchase_record_shipping_address = PurchaseRecordShippingAddress.new
 
     return unless user_signed_in? && current_user.id == @item.user_id || PurchaseRecord.exists?(item_id: @item.id)
@@ -13,7 +13,6 @@ class PurchaseRecordsController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase_record_shipping_address = PurchaseRecordShippingAddress.new(purchase_record_params)
 
     if @purchase_record_shipping_address.valid?
@@ -27,6 +26,10 @@ class PurchaseRecordsController < ApplicationController
   end
 
   private
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
 
   def purchase_record_params
     params.require(:purchase_record_shipping_address)
