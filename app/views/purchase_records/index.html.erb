@@ -33,7 +33,7 @@
     </div>
     <%# /支払額の表示 %>
 
-    <%= form_with model: @purchase_record_shipping_address, id: 'charge-form', class: 'transaction-form-wrap', url: item_purchase_records_path(item_id: @item.id), local: true do |f| %>
+    <%= form_with model: @purchase_record_shipping_address, data: {turbo: false}, id: 'charge-form', class: 'transaction-form-wrap', url: item_purchase_records_path(item_id: @item.id), local: true do |f| %>
 
     <%= render 'shared/error_messages', model: f.object %>
 
