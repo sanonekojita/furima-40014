@@ -18,10 +18,8 @@ document.addEventListener('turbo:load', function(){
       alreadyPreview.remove();
     };
 
-    console.log(e.target.files[0]);
     const file = e.target.files[0];
     const blob = window.URL.createObjectURL(file);
-    console.log(blob);
 
     // 画像を表示するためのdiv要素を生成
     const previewWrapper = document.createElement('div');
