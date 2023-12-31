@@ -1,5 +1,21 @@
 /* 商品の概要 */
 
+.item-box-img {
+  height: 200px;
+  width: 200px;
+}
+
+.other-images {
+  display: flex;
+}
+
+.other--image {
+  margin-right: 10px;
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+}
+
 .item-show {
   background-color: #f8f8f8;
   width: 100vw;
