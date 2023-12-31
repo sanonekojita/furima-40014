@@ -7,7 +7,14 @@
       <%= @item.item_name %>
     </h2>
     <div class="item-img-content">
-      <%= image_tag @item.image ,class:"item-box-img" if @item.image.attached? %>
+      <%= image_tag @item.images[0] ,class:"item-box-img" if @item.images.attached? %>
+      <div class="other-images">
+        <% @item.images[1..-1].each do |image| %>
+          <div class="other-image">
+            <%= image_tag image ,class:"other--image" %>
+          </div>
+        <%end%>
+      </div>      
       <% if PurchaseRecord.exists?(item_id: @item.id) %>
         <div class="sold-out">
           <span>Sold Out!!</span>

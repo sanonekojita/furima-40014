@@ -133,7 +133,7 @@
             <%= link_to item_path(item) do %>
 
               <div class='item-img-content'>
-                <%= image_tag item.image, class: "item-img" if item.image.attached? %>
+                <%= image_tag item.images[0], class: "item-img" if item.images.attached? %>
 
                 <% if PurchaseRecord.exists?(item_id: item.id) %>
                   <div class='sold-out'>
