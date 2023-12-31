@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one :purchase_record
-  has_one_attached :image
+  has_many_attached :images
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -10,7 +10,9 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :scheduled_delivery, class_name: 'ShippingFeeStatus'
 
-  validates :image, :item_name, :item_info, :item_price, presence: true
+  validates :images, presence: true, length: { minimum: 1, maximum: 5, message: "must be least 1 and no more than 5" }
+  validates :item_name, :item_info, :item_price, presence: true
+
   # validates :item_name, presence: true, length: { minimum: 1, maximum: 40 }
   # validates :item_info, presence: true, length: { minimum: 1, maximum: 1000 }
 

@@ -1,5 +1,21 @@
 /* 商品の概要 */
 
+.item-box-img {
+  height: 200px;
+  width: 200px;
+}
+
+.other-images {
+  display: flex;
+}
+
+.other--image {
+  margin-right: 10px;
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+}
+
 .item-show {
   background-color: #f8f8f8;
   width: 100vw;
@@ -29,7 +45,18 @@
   height: 50vh;
   width: 60vw;
   min-height: 500px;
-  background-color: rgb(205, 202, 202);
+  /* background-color: rgb(205, 202, 202); */
+  object-fit: contain;
+}
+
+.other-images {
+  display: flex;
+}
+
+.other--image {
+  margin-right: 10px;
+  width: 280px;
+  height: 280px;
   object-fit: contain;
 }
 
@@ -205,3 +232,4 @@
   font-weight: bold;
   font-size: 23px;
 }
+

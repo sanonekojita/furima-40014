@@ -73,6 +73,7 @@
 /* /共通 */
 
 /* 商品画像 */
+
 .img-upload {
   display: flex;
   justify-content: space-between;
@@ -90,6 +91,27 @@
 }
 
 /* /商品画像 */
+
+.previews {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.preview {
+  padding-right: 20px;
+}
+
+.preview-image {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.image-delete-button {
+  text-align: center;
+  border: solid 1px;
+  cursor: pointer;
+}
 
 /* 商品名と商品説明 */
 .new-items {
