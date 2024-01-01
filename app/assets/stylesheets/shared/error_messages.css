@@ -9,3 +9,12 @@
   list-style: circle;
   color: rgb(182, 48, 0);
 }
+
+.error-count {
+  display: flex;
+  justify-content: center;
+  font-size: 1.2vw;
+  list-style: circle;
+  color: rgb(182, 48, 0);
+  padding: 20px;
+}

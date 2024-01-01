@@ -61,6 +61,6 @@ class ItemsController < ApplicationController
   def move_to_sign_in
     return if user_signed_in?
 
-    redirect_to new_user_session_path, notice: 'You need to sign in or sign up before continuing.'
+    redirect_to new_user_session_path, notice: 'ログインまたはアカウント登録が必要です。続行する前にサインインまたはサインアップしてください。'
   end
 end

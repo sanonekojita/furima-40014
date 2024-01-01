@@ -1,0 +1,70 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+        birth_date: 生年月日
+        last_name: 姓
+        first_name: 名
+        last_name_kana: 姓(カナ)
+        first_name_kana: 名(カナ)
+      item:
+        images: 画像
+        item_name: 商品名
+        item_info: 商品の説明
+        item_price: 販売価格
+        category_id: カテゴリー
+        sales_status_id: 商品の状態
+        shipping_fee_status_id: 配送料の負担
+        prefecture_id: 発送元の地域
+        scheduled_delivery_id: 発送までの日数
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "は入力必須です"
+            password:
+              blank: "は入力必須です"
+              invalid: "が無効です。英字と数字の両方を含めてください。"
+            nickname:
+              blank: "は入力必須です"
+            birth_date:
+              blank: "は入力必須です"
+            last_name:
+              blank: "は入力必須です"
+              invalid: "が無効です。全角文字で入力してください。"
+            first_name:
+              blank: "は入力必須です"
+              invalid: "が無効です。全角文字で入力してください。"
+            last_name_kana:
+              blank: "は入力必須です"
+              invalid: "が無効です。全角カタカナで入力してください。"
+            first_name_kana:
+              blank: "は入力必須です"
+              invalid: "が無効です。全角カタカナで入力してください。"
+        item:
+          attributes:
+            images:
+              blank: "は入力必須です"
+              too_short: "は1枚以上5枚以下である必要があります"
+            item_name:
+              blank: "は入力必須です"
+            item_info:
+              blank: "は入力必須です"
+            item_price:
+              blank: "は入力必須です"
+              not_a_number: "が数字ではありません"
+              greater_than_or_equal_to: "は300円以上でなければなりません"
+              less_than_or_equal_to: "は9999999円以下でなければなりません"
+              not_an_integer: "は整数でなければなりません"
+            category_id:
+              other_than: "は未選択にできません"
+            sales_status_id:
+              other_than: "は未選択にできません"
+            shipping_fee_status_id:
+              other_than: "は未選択にできません"
+            prefecture_id:
+              other_than: "は未選択にできません"
+            scheduled_delivery_id:
+              other_than: "は未選択にできません"
