@@ -55,7 +55,7 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:item_name, :item_info,
                                  :category_id, :sales_status_id,
                                  :shipping_fee_status_id, :prefecture_id,
-                                 :scheduled_delivery_id, :item_price, {images: []}).merge(user_id: current_user.id)
+                                 :scheduled_delivery_id, :item_price, { images: [] }).merge(user_id: current_user.id)
   end
 
   def move_to_sign_in

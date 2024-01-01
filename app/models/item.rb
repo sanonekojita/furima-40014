@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :scheduled_delivery, class_name: 'ShippingFeeStatus'
 
-  validates :images, presence: true, length: { in: 1..5, message: "must be at least 1 and no more than 5" }
+  validates :images, presence: true, length: { in: 1..5, message: 'must be at least 1 and no more than 5' }
   validates :item_name, :item_info, :item_price, presence: true
 
   # validates :item_name, presence: true, length: { minimum: 1, maximum: 40 }
