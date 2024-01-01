@@ -1,4 +1,5 @@
 <% if model.errors.any? %>
+<p class="error-count"><%= model.errors.count %>件のエラーが発生したため、登録できません。</p>
 <div class="error-alert">
   <ul>
     <% model.errors.full_messages.each do |message| %>
