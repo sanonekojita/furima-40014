@@ -6,6 +6,7 @@ class PurchaseRecordsController < ApplicationController
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @purchase_record_shipping_address = PurchaseRecordShippingAddress.new
 
+    # redirect_to new_card_path and return unless current_user.card.present?
     return unless user_signed_in? && current_user.id == @item.user_id || PurchaseRecord.exists?(item_id: @item.id)
 
     redirect_to root_path
