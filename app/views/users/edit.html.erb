@@ -1,30 +1,32 @@
+<%= render "shared/header" %>
+
 <div class="AccountPage">
   <div class="AccountPage__title">
-    <h1>マイページ</h1>
+    <h1>ユーザー情報</h1>
   </div><br>
-  <div class="Account__info">
-    <h2>ユーザー情報</h2>
-  </div>
-  <div class="AccountPage__form">
-    <%= form_for(current_user) do |f| %>
-      <div class="FormField">
-        <div class="FormField__name">
-          <%= f.label :nickname %>
-        </div>
-        <div class="FormField__name">
-          <%= f.text_field :nickname, autofocus: true %>
-        </div>
+</div>
+<div class="AccountPage__form">
+  <%= form_for(current_user) do |f| %>
+    <div class="FormField">
+      <div class="FormField__name">
+        <%= f.label :nickname %>
       </div>
-      <div class="FormField">
-        <div class="FormField__email">
-          <%= f.label :email %>
-        </div>
-        <div class="FormField__email">
-          <%= f.email_field :email %>
-        </div>
-        <br>
+      <div class="FormField__name">
+        <%= f.text_field :nickname, autofocus: true %>
       </div>
-      <%= f.submit "更新する" %>
-    <% end %>
-  </div>
+    </div>
+    <div class="FormField">
+      <div class="FormField__email">
+        <%= f.label :email %>
+      </div>
+      <div class="FormField__email">
+        <%= f.email_field :email %>
+      </div>
+      <br>
+    </div>
+    <%= f.submit "更新する" %>
+  <% end %>
+</div>
+<div>
+  <%= link_to "マイページへ戻る", user_path(current_user), class: "back" %>
 </div>

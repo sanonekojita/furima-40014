@@ -1,7 +1,13 @@
 <%= include_gon %>
 
-<h1>カード登録</h1>
-<%= form_with  url: cards_path, id: 'charge-form', class: 'card-form',local: true do |f| %>
+<%= render "shared/header" %>
+
+<div class="AccountPage">
+  <div class="AccountPage__title">
+    <h1>カード情報登録</h1>
+  </div><br>
+</div>
+<%= form_with  url: cards_path, data: {turbo: false}, id: 'charge-form', class: 'card-form',local: true do |f| %>
   <div class='form-wrap'>
     <p>カード番号</p>
     <div id="number-form" class="input-default"></div>
@@ -16,5 +22,6 @@
   </div>
   <%= f.submit "登録する", class:"button", id: "button" %>
 <% end %>
-
-<%# 使わない？ %>
+<div>
+  <%= link_to "マイページへ戻る", user_path(current_user), class: "back" %>
+</div>

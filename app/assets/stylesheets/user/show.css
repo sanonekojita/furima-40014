@@ -1,19 +1,31 @@
+.AccountPage__title{
+  text-align: center;
+  border-bottom: 2px solid #f5f5f5;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+.Account__info {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .User_info {
   background-color: #FFF;
-  width: 70vw;
   min-width: 1200px;
-  padding: 10vh 15vw;
+  padding: 0 15vw 0 15vw;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.detail-table {
+.user-detail-table {
   margin-bottom: 30px;
   width: 100%;
 }
 
-.detail-item {
+.user-detail-item {
   width: 20%;
   background-color: #eee;
   border: 1px solid #dedede;
@@ -21,9 +33,96 @@
   text-align: center;
 }
 
-.detail-value {
+.user-detail-value {
   width: 80%;
   padding: 20px;
   border: 1px solid #dedede;
   font-size: 14px;
+}
+
+.Card_info {
+  background-color: #FFF;
+  min-width: 1200px;
+  padding: 0 30vw 0 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Card__title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-detail-table {
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.card-detail-item {
+  width: 20%;
+  background-color: #eee;
+  border: 1px solid #dedede;
+  font-size: 14px;
+  text-align: center;
+}
+
+.card-detail-value {
+  width: 80%;
+  padding: 20px;
+  border: 1px solid #dedede;
+  font-size: 14px;
+}
+
+.no-user-detail-table {
+  width: 80%;
+  padding: 20px;
+  border: 1px solid #dedede;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.edit-btn {
+  margin-bottom: 60px;
+}
+
+.edit-blue-btn {
+  width: 100%;
+  background: #2d30ea;
+  border: 1px solid #2d30ea;
+  color: #fff;
+  line-height: 48px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.card-edit-btn {
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 60px;
+}
+
+.edit-orange-btn {
+  width: 100%;
+  background: #ea922d;
+  border: 1px solid #ea922d;
+  color: #fff;
+  line-height: 48px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.edit-gray-btn {
+  width: 100%;
+  background: #2b2b29;
+  border: 1px solid #2b2b29;
+  color: #fff;
+  line-height: 48px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px;
 }

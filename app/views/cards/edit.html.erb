@@ -1,18 +1,35 @@
 <%= include_gon %>
 
-<h1>カード登録</h1>
-<%= form_with  url: cards_path, data: {turbo: false}, id: 'charge-form', class: 'card-form',local: true do |f| %>
+<%= render "shared/header" %>
+
+<div class="AccountPage">
+  <div class="AccountPage__title">
+    <h1>カード情報更新</h1>
+  </div><br>
+</div>
+<%= form_with model: current_user.card, url: card_path(current_user.card), data: { turbo: false }, id: 'charge-form', class: 'card-form', local: true do |f| %>
   <div class='form-wrap'>
     <p>カード番号</p>
-    <div id="number-form" class="input-default"></div>
+    <div id="number-form" class="input-default">
+      <%= f.text_field :card_number %>
+    </div>
   </div>
   <div class='form-wrap'>
     <p>期限</p>
-    <div id="expiry-form" class="input-default"></div>
+    <div id="expiry-form" class="input-default">
+      <%= f.text_field :expiration_date %>
+    </div>
   </div>
   <div class='form-wrap'>
     <p>カード背面4桁もしくは3桁の番号</p>
-    <div id="cvc-form" class="input-default"></div>
+    <div id="cvc-form" class="input-default">
+      <%= f.text_field :cvc %>
+    </div>
   </div>
-  <%= f.submit "更新する", class:"button", id: "button" %>
+  <%= hidden_field_tag '_method', 'patch' %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit "更新する", class: "button", id: "button" %>
 <% end %>
+<div>
+  <%= link_to "マイページへ戻る", user_path(current_user), class: "back" %>
+</div>
