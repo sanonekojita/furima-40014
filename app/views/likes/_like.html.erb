@@ -1,0 +1,9 @@
+<% if user_signed_in? && item.liked_by?(current_user) %>
+  <%= link_to item_likes_path(item.id), data: { turbo_method: :delete }, class: "item_likes", remote: true do %>
+    <%= image_tag "yellowstar.png", alt: "いいね済み", class:"star-icon" %>
+  <% end %>
+<% else %>
+  <%= link_to item_likes_path(item.id), data: { turbo_method: :post }, class: "item_likes", remote: true do %>
+    <%= image_tag "star.png", alt: "いいねする", class:"star-icon" %>
+  <% end %>
+<% end %>

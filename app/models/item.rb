@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :purchase_record
   has_many_attached :images
+  has_many :likes
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -38,4 +39,9 @@ class Item < ApplicationRecord
 
   validates :category_id, :sales_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id,
             numericality: { other_than: 1, message: "can't be blank" }
+
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
+  end
+
 end
