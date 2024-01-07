@@ -45,20 +45,20 @@
     </div>
   </div>
   <div class="Card_info">
-    <% if @cardInfo.present? %>
+    <% if @card_info.present? %>
       <table class="card-detail-table">
         <tbody>
           <tr>
             <th class="card-detail-item">【カード番号】</th>
-            <td class="card-detail-value"><%= "**** **** **** " + @cardInfo[:last4] %></td>
+            <td class="card-detail-value"><%= "**** **** **** " + @card_info[:last4] %></td>
           </tr>
           <tr>
             <th class="card-detail-item">【有効期限】</th>
-            <td class="card-detail-value"><%= @cardInfo[:exp_month] %> / <%= @cardInfo[:exp_year] %></td>
+            <td class="card-detail-value"><%= @card_info[:exp_month] %> / <%= @card_info[:exp_year] %></td>
           </tr>
           <tr>
             <th class="card-detail-item">【ブランド】</th>
-            <td class="card-detail-value"><%= @cardInfo[:brand] %></td>
+            <td class="card-detail-value"><%= @card_info[:brand] %></td>
           </tr>
         </tbody>
       </table>

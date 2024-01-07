@@ -27,6 +27,7 @@ class CardsController < ApplicationController
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @card = Card.find(params[:id])
   end
+
   def update
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
 

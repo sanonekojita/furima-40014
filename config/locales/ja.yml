@@ -69,6 +69,40 @@ ja:
             scheduled_delivery_id:
               other_than: "は未選択にできません"
 
+  activemodel:
+    attributes:
+      purchase_record_shipping_address:
+        token: トークン
+        postal_code: 郵便番号
+        prefecture_id: 都道府県
+        city: 市区町村
+        addresses: 番地
+        building: 建物名
+        phone_number: 電話番号
+        purchase_record_shipping_address:
+    errors:
+      models:
+        purchase_record_shipping_address:
+          attributes:
+            token:
+              blank: "は入力必須です"
+            postal_code:
+              blank: "は入力必須です"
+              invalid: "が無効です。次のように入力してください (例: 123-4567)"
+            prefecture_id:
+              other_than: "は未選択にできません"
+            city:
+              blank: "は入力必須です"
+            addresses:
+              blank: "は入力必須です"
+            phone_number:
+              blank: "は入力必須です"
+              too_short: "が短すぎます"
+              too_long: "が長すぎます"
+              invalid: "が無効です。数字のみで入力してください"
+
+
+
   date:
     formats:
       default: "%Y/%m/%d"

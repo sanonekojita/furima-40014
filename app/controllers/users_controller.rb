@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
       if @card.present? && @card.customer_token.present?
         customer = Payjp::Customer.retrieve(@card.customer_token)
-        @cardInfo = customer.cards.first if customer.cards.present?
+        @card_info = customer.cards.first if customer.cards.present?
         # 以降の処理（顧客情報およびカード情報が存在する場合の処理）
       else
         # カード情報または顧客情報が存在しない場合の処理
