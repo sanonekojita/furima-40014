@@ -1,0 +1,27 @@
+<%= include_gon %>
+
+<%= render "shared/header" %>
+
+<div class="AccountPage">
+  <div class="AccountPage__title">
+    <h1>カード情報登録</h1>
+  </div><br>
+</div>
+<%= form_with  url: cards_path, data: {turbo: false}, id: 'charge-form', class: 'card-form',local: true do |f| %>
+  <div class='form-wrap'>
+    <p>カード番号</p>
+    <div id="number-form" class="input-default"></div>
+  </div>
+  <div class='form-wrap'>
+    <p>期限</p>
+    <div id="expiry-form" class="input-default"></div>
+  </div>
+  <div class='form-wrap'>
+    <p>カード背面4桁もしくは3桁の番号</p>
+    <div id="cvc-form" class="input-default"></div>
+  </div>
+  <%= f.submit "登録する", class:"button", id: "button" %>
+<% end %>
+<div>
+  <%= link_to "マイページへ戻る", user_path(current_user), class: "back" %>
+</div>

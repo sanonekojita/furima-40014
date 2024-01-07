@@ -1,0 +1,81 @@
+<%= render "shared/header" %>
+
+<div class="AccountPage">
+  <div class="AccountPage__title">
+    <h1>マイページ</h1>
+  </div>
+  <br>
+  <div class="User_info">
+    <div class="Account__info">
+      ユーザー情報
+    </div>
+    <table class="user-detail-table">
+      <tbody>
+        <tr>
+          <th class="user-detail-item">ニックネーム</th>
+          <td class="user-detail-value"><%= current_user.nickname %></td>
+        </tr>
+        <tr>
+          <th class="user-detail-item">メールアドレス</th>
+          <td class="user-detail-value"><%= current_user.email %></td>
+        </tr>
+        <tr>
+          <th class="user-detail-item">お名前(全角)</th>
+          <td class="user-detail-value"><%= current_user.last_name + ' ' + current_user.first_name %></td>
+        </tr>
+        <tr>
+          <th class="user-detail-item">お名前(カナ)</th>
+          <td class="user-detail-value"><%= current_user.last_name_kana + ' ' + current_user.first_name_kana %></td>
+        </tr>
+        <tr>
+          <th class="user-detail-item">生年月日</th>
+          <td class="user-detail-value"><%= current_user.birth_date %></td>
+        </tr>
+        <tr>
+          <th class="user-detail-item">住所(まだ保存機能つけていない)</th>
+          <td class="user-detail-value"><%= current_user.nickname %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="edit-btn">
+      <%= link_to "ユーザー情報更新", edit_user_path, class: "edit-blue-btn" %>
+    </div>
+    <div class="Card__title">
+      カード情報
+    </div>
+  </div>
+  <div class="Card_info">
+    <% if @card_info.present? %>
+      <table class="card-detail-table">
+        <tbody>
+          <tr>
+            <th class="card-detail-item">【カード番号】</th>
+            <td class="card-detail-value"><%= "**** **** **** " + @card_info[:last4] %></td>
+          </tr>
+          <tr>
+            <th class="card-detail-item">【有効期限】</th>
+            <td class="card-detail-value"><%= @card_info[:exp_month] %> / <%= @card_info[:exp_year] %></td>
+          </tr>
+          <tr>
+            <th class="card-detail-item">【ブランド】</th>
+            <td class="card-detail-value"><%= @card_info[:brand] %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% else %>
+      <div class="no-user-detail-table">
+          カード情報がありません
+      </div>
+    <% end %>
+    <div class="card-edit-btn">
+      <br>
+      <% if Card.exists?(user_id: current_user.id) %>
+        <%= link_to "カード情報更新", edit_card_path(id: @card.id), data: {turbo: false}, class: "edit-orange-btn" %>
+        <%= link_to "カード情報削除", card_path(id: @card.id), data: {turbo_method: :delete}, class:"edit-gray-btn" %>
+      <% else %>
+        <%= link_to "カード情報更新", new_card_path, data: {turbo: false}, class: "edit-orange-btn" %>
+      <% end %>
+      <br>
+    </div>
+  </div>
+</div>
