@@ -37,5 +37,4 @@ class PurchaseRecordShippingAddress
   def card_already_registered?
     @user&.card.present?
   end
-
 end
