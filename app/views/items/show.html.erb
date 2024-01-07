@@ -51,7 +51,14 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= User.find(@item.user_id).nickname %></td>
+          <td class="detail-value">
+            <%= link_to User.find(@item.user_id).nickname, user_path(@item.user_id), class: "user--nickname" %>
+            <% if User.find(@item.user_id).followed_by?(current_user) %>
+              <%=link_to "フォロー中", user_relationships_path(User.find(@item.user_id), item_id: @item.id), class: "btn", data: { turbo_method: :delete } %>
+            <% else %>
+              <%=link_to "フォローする", user_relationships_path(User.find(@item.user_id), item_id: @item.id), class: "btn", data: { turbo_method: :post } %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>

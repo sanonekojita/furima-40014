@@ -233,3 +233,8 @@
   font-size: 23px;
 }
 
+.user--nickname {
+  font-weight: bold;
+  font-size: 15px;
+  color: #3e3cce;
+}

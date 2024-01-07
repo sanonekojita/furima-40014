@@ -126,3 +126,29 @@
   cursor: pointer;
   padding: 10px;
 }
+
+.contents_row {
+  display: flex;
+  padding: 10px;
+}
+
+.content_post {
+  height: 300px;
+  width: 300px;
+}
+
+.user-item {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.follow-follower {
+  background-color: #FFF;
+  min-width: 1200px;
+  padding: 0 15vw 0 15vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

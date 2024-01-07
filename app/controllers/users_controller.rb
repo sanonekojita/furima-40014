@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    if user_signed_in? && current_user.id == @user.id
+    @items = @user.items
+
+    if user_signed_in?
       Payjp.api_key = ENV['PAYJP_SECRET_KEY']
       @card = Card.find_by(user_id: @user.id)
 
