@@ -9,73 +9,168 @@
     <div class="Account__info">
       ユーザー情報
     </div>
-    <table class="user-detail-table">
-      <tbody>
-        <tr>
-          <th class="user-detail-item">ニックネーム</th>
-          <td class="user-detail-value"><%= current_user.nickname %></td>
-        </tr>
-        <tr>
-          <th class="user-detail-item">メールアドレス</th>
-          <td class="user-detail-value"><%= current_user.email %></td>
-        </tr>
-        <tr>
-          <th class="user-detail-item">お名前(全角)</th>
-          <td class="user-detail-value"><%= current_user.last_name + ' ' + current_user.first_name %></td>
-        </tr>
-        <tr>
-          <th class="user-detail-item">お名前(カナ)</th>
-          <td class="user-detail-value"><%= current_user.last_name_kana + ' ' + current_user.first_name_kana %></td>
-        </tr>
-        <tr>
-          <th class="user-detail-item">生年月日</th>
-          <td class="user-detail-value"><%= current_user.birth_date %></td>
-        </tr>
-        <tr>
-          <th class="user-detail-item">住所(まだ保存機能つけていない)</th>
-          <td class="user-detail-value"><%= current_user.nickname %></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="edit-btn">
-      <%= link_to "ユーザー情報更新", edit_user_path, class: "edit-blue-btn" %>
-    </div>
-    <div class="Card__title">
-      カード情報
-    </div>
-  </div>
-  <div class="Card_info">
-    <% if @card_info.present? %>
-      <table class="card-detail-table">
+    <% unless current_user.id == @user.id %>
+      <table class="user-detail-table">
         <tbody>
           <tr>
-            <th class="card-detail-item">【カード番号】</th>
-            <td class="card-detail-value"><%= "**** **** **** " + @card_info[:last4] %></td>
-          </tr>
-          <tr>
-            <th class="card-detail-item">【有効期限】</th>
-            <td class="card-detail-value"><%= @card_info[:exp_month] %> / <%= @card_info[:exp_year] %></td>
-          </tr>
-          <tr>
-            <th class="card-detail-item">【ブランド】</th>
-            <td class="card-detail-value"><%= @card_info[:brand] %></td>
+            <th class="user-detail-item">ニックネーム</th>
+            <td class="user-detail-value">
+              <%= @user.nickname %>
+              <% if @user.followed_by?(current_user) %>
+                <%=link_to "フォロー中", user_relationships_path(@user.id), class: "btn", data: { turbo_method: :delete } %>
+              <% else %>
+                <%=link_to "フォローする", user_relationships_path(@user.id), class: "btn", data: { turbo_method: :post } %>
+              <% end %>
+            </td>
           </tr>
         </tbody>
       </table>
-    <% else %>
-      <div class="no-user-detail-table">
-          カード情報がありません
+      <div>
+        <h3>フォロー</h3>
+        <% @user.followings.each do |user| %>
+          <p class=“f-user”><%= link_to user.nickname, user_path(user.id) %></p>
+        <% end %>
+        <h3>フォロワー</h3>
+        <% @user.followers.each do |user| %>
+          <p class=“f-user”><%= link_to user.nickname, user_path(user.id) %></p>
+        <% end %>
       </div>
     <% end %>
-    <div class="card-edit-btn">
-      <br>
-      <% if Card.exists?(user_id: current_user.id) %>
-        <%= link_to "カード情報更新", edit_card_path(id: @card.id), data: {turbo: false}, class: "edit-orange-btn" %>
-        <%= link_to "カード情報削除", card_path(id: @card.id), data: {turbo_method: :delete}, class:"edit-gray-btn" %>
-      <% else %>
-        <%= link_to "カード情報更新", new_card_path, data: {turbo: false}, class: "edit-orange-btn" %>
-      <% end %>
-      <br>
-    </div>
+    <% if current_user.id == @user.id %>
+      <table class="user-detail-table">
+        <tbody>
+          <tr>
+            <th class="user-detail-item">ニックネーム</th>
+            <td class="user-detail-value"><%= @user.nickname %></td>
+          </tr>
+          <tr>
+            <th class="user-detail-item">メールアドレス</th>
+            <td class="user-detail-value"><%= current_user.email %></td>
+          </tr>
+          <tr>
+            <th class="user-detail-item">お名前(全角)</th>
+            <td class="user-detail-value"><%= current_user.last_name + ' ' + current_user.first_name %></td>
+          </tr>
+          <tr>
+            <th class="user-detail-item">お名前(カナ)</th>
+            <td class="user-detail-value"><%= current_user.last_name_kana + ' ' + current_user.first_name_kana %></td>
+          </tr>
+          <tr>
+            <th class="user-detail-item">生年月日</th>
+            <td class="user-detail-value"><%= current_user.birth_date %></td>
+          </tr>
+          <tr>
+            <th class="user-detail-item">住所(まだ保存機能つけていない)</th>
+            <td class="user-detail-value"><%= current_user.nickname %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="edit-btn">
+        <%= link_to "ユーザー情報更新", edit_user_path, class: "edit-blue-btn" %>
+      </div>
+      <div class="Card__title">
+        カード情報
+      </div>
+    <% end %>
   </div>
+    <% if current_user.id == @user.id %>
+      <div class="Card_info">
+        <% if @card_info.present? %>
+          <table class="card-detail-table">
+            <tbody>
+              <tr>
+                <th class="card-detail-item">【カード番号】</th>
+                <td class="card-detail-value"><%= "**** **** **** " + @card_info[:last4] %></td>
+              </tr>
+              <tr>
+                <th class="card-detail-item">【有効期限】</th>
+                <td class="card-detail-value"><%= @card_info[:exp_month] %> / <%= @card_info[:exp_year] %></td>
+              </tr>
+              <tr>
+                <th class="card-detail-item">【ブランド】</th>
+                <td class="card-detail-value"><%= @card_info[:brand] %></td>
+              </tr>
+            </tbody>
+          </table>
+        <% else %>
+          <div class="no-user-detail-table">
+              カード情報がありません
+          </div>
+        <% end %>
+        <div class="card-edit-btn">
+          <br>
+          <% if Card.exists?(user_id: current_user.id) %>
+            <%= link_to "カード情報更新", edit_card_path(id: @card.id), data: {turbo: false}, class: "edit-orange-btn" %>
+            <%= link_to "カード情報削除", card_path(id: @card.id), data: {turbo_method: :delete}, class:"edit-gray-btn" %>
+          <% else %>
+            <%= link_to "カード情報更新", new_card_path, data: {turbo: false}, class: "edit-orange-btn" %>
+          <% end %>
+          <br>
+        </div>
+      </div>
+      <div class='follow-follower'>
+        <h3>フォロー</h3>
+        <% @user.followings.each do |user| %>
+          <p class=“f-user”><%= link_to user.nickname, user_path(user.id) %></p>
+        <% end %>
+        <h3>フォロワー</h3>
+        <% @user.followers.each do |user| %>
+          <p class=“f-user”><%= link_to user.nickname, user_path(user.id) %></p>
+        <% end %>
+      </div>
+    <% end %>
+  <div class='user-item'>
+    <%= @user.nickname %>さんの商品一覧
+  </div>
+  <ul class='item-lists'>
+    <% if @items.present? %>
+      <% @items.each do |item| %>
+        <li class='list'>
+          <%= link_to item_path(item) do %>
+
+            <div class='item-img-content'>
+              <%= image_tag item.images[0], class: "item-img" if item.images.attached? %>
+
+              <% if PurchaseRecord.exists?(item_id: item.id) %>
+                <div class='sold-out'>
+                  <span>Sold Out!!</span>
+                </div>
+              <% end %>  
+
+            </div>
+            <div class='item-info'>
+              <h3 class='item'>
+                <%= item.item_name %>
+              </h3>
+              <div class='item-price'>
+                <span><%= item.item_price %>円<br><%= ShippingFeeStatus.find(item.shipping_fee_status_id).name %></span>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class:"star-icon" %>
+                  <span class='star-count'>0</span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    <% else %>
+      <li class='list'>
+        <%= link_to '#' do %>
+          <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              商品を出品してね！
+            </h3>
+            <div class='item-price'>
+              <span>99999999円<br>(税込み)</span>
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>
