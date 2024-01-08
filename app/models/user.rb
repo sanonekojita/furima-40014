@@ -29,13 +29,13 @@ class User < ApplicationRecord
   has_many :items
   has_many :purchase_records
   has_one :card, dependent: :destroy
-  has_many :likes
+  has_many :likes, dependent: :destroy
 
   has_many :active_relationships, class_name: 'Relationship', foreign_key: :following_id
   has_many :followings, through: :active_relationships, source: :follower
 
-  has_many :passive_relationships, class_name: 'Relationship', foreign_key: :follower_id
-  has_many :followers, through: :passive_relationships, source: :following
+  has_many :passive_relationships, class_name: 'Relationship', foreign_key: :follower_id, dependent: :destroy
+  has_many :followers, through: :passive_relationships, source: :following, dependent: :destroy
 
   def followed_by?(user)
     return false unless user # userがnilの場合はfalseを返す

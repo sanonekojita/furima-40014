@@ -144,10 +144,21 @@
               </h3>
               <div class='item-price'>
                 <span><%= item.item_price %>円<br><%= ShippingFeeStatus.find(item.shipping_fee_status_id).name %></span>
-                <div class='star-btn'>
-                  <%= image_tag "star.png", class:"star-icon" %>
-                  <span class='star-count'>0</span>
-                </div>
+                <% if user_signed_in? %>
+                  <div id="like-btn<%= item.id %>">
+                    <%= render partial: "likes/like", locals: { item: item } %>
+                    <span class='star-count'><%= item.likes.count %></span>
+                  </div>
+                <% else %>
+                  <div id="like-btn<%= item.id %>">
+                    <% if item.likes.exists?(item.id) %>
+                        <%= image_tag "yellowstar.png", alt: "いいね済み", class:"star-icon" %>
+                    <% else %>
+                        <%= image_tag "star.png", alt: "いいねする", class:"star-icon" %>
+                    <% end %>
+                    <span class='star-count'><%= item.likes.count %></span>
+                  </div>
+                <% end %>
               </div>
             </div>
           <% end %>

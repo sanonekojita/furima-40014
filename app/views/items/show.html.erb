@@ -84,8 +84,21 @@
     </table>
     <div class="option">
       <div class="favorite-btn">
-        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-        <span>お気に入り 0</span>
+        <% if user_signed_in? %>
+          <div id="like-btn<%= @item.id %>">
+            <%= render partial: "likes/favo", locals: { item: @item } %>
+            <span class='star-count'>お気に入り <%= @item.likes.count %></span>
+          </div>
+        <% else %>
+          <div id="like-btn<%= @item.id %>">
+            <% if @item.likes.exists?(@item.id) %>
+                <%= image_tag "yellowstar.png", alt: "いいね済み", class:"favorite-star-icon", width:"20",height:"20" %>
+            <% else %>
+                <%= image_tag "star.png", alt: "いいねする", class:"favorite-star-icon" %>
+            <% end %>
+            <span class='star-count'>お気に入り <%= @item.likes.count %></span>
+          </div>
+        <% end %>
       </div>
       <div class="report-btn">
         <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
