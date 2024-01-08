@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :items do
     resources :purchase_records, only: [:index, :create]
     resource :likes, only: [:create, :destroy]
+    resources :comments, only: :create
   end
   resources :users, only: [:show, :edit, :update] do
     resource :relationships, only: [:create, :destroy]
