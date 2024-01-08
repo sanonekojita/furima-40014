@@ -1,0 +1,46 @@
+.comment-title {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.comment-form {
+  display: flex;
+}
+
+.comment-text {
+  display: block;
+  margin-top: 20px;
+}
+
+.comment-submit {
+  display: block;
+  margin-top: 20px;
+}
+
+.comment {
+  display: flex;
+  justify-content: space-between;
+  width: 800px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.comments {
+  text-align: center;
+}
+
+.comment p {
+   margin: 0;
+}
+
+.user-comment-name {
+  color: gray;
+  font-weight: bold;
+}
+
+.space {
+  padding-left: 50px;
+  white-space: nowrap;
+}

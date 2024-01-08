@@ -40,7 +40,7 @@
 
     <% if user_signed_in? && current_user.id != @item.user_id %>
       <% unless PurchaseRecord.exists?(item_id: @item.id) %>
-        <%= link_to "購入画面に進む", item_purchase_records_path(item_id: @item.id) ,data: {turbo: false}, class:"item-red-btn"%>
+        <%= link_to "購入画面に進む", item_purchase_records_path(item_id: @item.id), data: {turbo: false}, class:"item-red-btn"%>
       <% end %>
     <% end %>
 
@@ -94,20 +94,31 @@
     </div>
   </div>
   <%# /商品の概要 %>
-
+  <div id="comments" class="comments">
+    <h4 class="comment-title">＜コメント一覧＞</h4>
+    <% @item.comments.each do |comment| %>
+      <div class="comment">
+        <p class="user-comment-name"><%= comment.user.nickname %>： </p>
+        <p class="user-comment"><%= comment.text%></p>
+        <p class="space"><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+      </div>
+    <% end %>
+  </div>
   <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
-      <p class="comment-warn">
-        相手のことを考え丁寧なコメントを心がけましょう。
-        <br>
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      </p>
-      <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
-    </form>
+    <% if user_signed_in? && !PurchaseRecord.exists?(item_id: @item.id) %>
+      <%= form_with model: [@item, @comment], id: "comment-form" do |f| %>
+        <%= f.text_area :text , class: "comment-text"%>
+        <p class="comment-warn">
+          相手のことを考え丁寧なコメントを心がけましょう。
+          <br>
+          不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        </p>
+        <button type="submit" class="comment-btn">
+          <%= image_submit_tag("comment.png", alt: "コメントをする", class: "comment-flag-icon", width: "20", height: "25") %>
+          <span>コメントする<span>
+        </button>
+      <% end %>
+    <% end %>
   </div>
   <div class="links">
     <a href="#" class="change-item-btn">
