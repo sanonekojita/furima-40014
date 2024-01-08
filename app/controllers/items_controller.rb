@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :move_to_sign_in, except: [:index, :show]
 
   def index
-    @items = Item.all.order('created_at DESC')
+    @items = Item.all.order('created_at DESC').page(params[:page]).per(15)
   end
 
   def new
