@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @items = @user.items
+    @items = @user.items.page(params[:page]).per(15)
 
     if user_signed_in?
       Payjp.api_key = ENV['PAYJP_SECRET_KEY']

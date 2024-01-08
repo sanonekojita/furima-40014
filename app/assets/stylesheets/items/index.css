@@ -309,4 +309,11 @@ a {
   font-size: 2vh;
 }
 
+.page {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 30px;
+  font-size: 25px;
+}
+
 /* //商品一覧 */
