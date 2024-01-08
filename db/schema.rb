@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_07_013646) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_07_144646) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -47,6 +47,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_013646) do
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
+  create_table "comments", charset: "utf8", force: :cascade do |t|
+    t.text "text"
+    t.integer "user_id"
+    t.integer "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "items", charset: "utf8", force: :cascade do |t|
     t.string "item_name", null: false
     t.text "item_info", null: false
@@ -60,6 +68,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_013646) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "likes", charset: "utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_likes_on_item_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "purchase_records", charset: "utf8", force: :cascade do |t|
@@ -115,6 +132,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_013646) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cards", "users"
   add_foreign_key "items", "users"
+  add_foreign_key "likes", "items"
+  add_foreign_key "likes", "users"
   add_foreign_key "purchase_records", "items"
   add_foreign_key "purchase_records", "users"
   add_foreign_key "shipping_addresses", "purchase_records"
