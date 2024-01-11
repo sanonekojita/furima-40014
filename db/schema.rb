@@ -112,7 +112,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_08_083813) do
 
   create_table "user_addresses", charset: "utf8", force: :cascade do |t|
     t.string "user_postal_code", null: false
-    t.integer "user_prefecture_id", null: false
+    t.integer "prefecture_id", null: false
     t.string "user_city", null: false
     t.text "user_addresses", null: false
     t.text "user_building"

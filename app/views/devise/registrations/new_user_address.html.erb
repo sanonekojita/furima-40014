@@ -1,21 +1,70 @@
-<h2>住所情報登録</h2>
+<div class='transaction-contents'>
+    <div class='transaction-main'>
+    <h2>住所情報登録</h2>
+    <div class='shipping-address-form'>
+      <%= form_for @user_address do |f| %>
+        <%= render "devise/shared/error_messages", resource: @user_address %>
 
-<%= form_for @user_address do |f| %>
-  <%= render "devise/shared/error_messages", resource: @user_address %>
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">郵便番号</label>
+            <span class="indispensable">必須</span>
+          </div>
+          <%= f.label :user_postal_code %><br />
+          <%= f.text_field :user_postal_code %>
+        </div>
 
-  <div class="field">
-    <%= f.label :user_postal_code %><br />
-    <%= f.text_field :user_postal_code %>
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">都道府県</label>
+            <span class="indispensable">必須</span>
+          </div>
+          <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class: "select-box", id: "prefecture"}) %>
+        </div>
+
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">市区町村</label>
+            <span class="indispensable">必須</span>
+          </div>
+          <%= f.label :user_city %><br />
+          <%= f.text_field :user_city %>
+        </div>
+
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">住所</label>
+            <span class="indispensable">必須</span>
+          </div>
+          <%= f.label :user_addresse %><br />
+          <%= f.text_field :user_addresses %>
+        </div>
+
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">建物名</label>
+            <span class="indispensable">必須</span>
+          </div>
+          <%= f.label :user_building %><br />
+          <%= f.text_field :user_building %>
+        </div>
+
+        <div class="form-group">
+          <div class='form-text-wrap'>
+            <label class="form-text">電話番号</label>
+            <span class="indispensable">必須</span>
+          </div>
+          <%= f.label :user_phone_number %><br />
+          <%= f.text_field :user_phone_number %>
+        </div>
+
+        <div class='register-btn'>
+          <%= f.submit "会員登録" ,class:"register-red-btn" %>
+        </div>
+
+      <% end %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :user_addresses %><br />
-    <%= f.text_field :user_addresses %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+</div>
 
 <%= render "devise/shared/links" %>

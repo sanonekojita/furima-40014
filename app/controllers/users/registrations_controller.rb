@@ -10,12 +10,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.new(sign_up_params)
-    render :new, status: :unprocessable_entity and return unless @user.valid?
-
-    session['devise.regist_data'] = { user: @user.attributes }
-    session['devise.regist_data'][:user]['password'] = params[:user][:password]
-    @user_address = @user.build_user_address
-    render :new_user_address, status: :accepted
+    unless @user.valid?
+      render :new, status: :unprocessable_entity and return
+    end
+   session["devise.regist_data"] = {user: @user.attributes}
+   session["devise.regist_data"][:user]["password"] = params[:user][:password]
+   @user_address = @user.build_user_address
+   render :new_user_address, status: :accepted
   end
 
   def create_user_address
@@ -33,8 +34,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def user_address_params
-    params.require(:user_address).permit(:user_postal_code, :user_address, :user_prefecture_id,
-                                         :user_city, :user_addresses, :user_building, :user_phone_number)
+    params.require(:user_address).permit(:user_postal_code, :prefecture_id, :user_city,
+                                         :user_addresses, :user_building, :user_phone_number)
+  end
+
+  def new_user_address
+    @user_address = UserAddress.new
   end
 
   # GET /resource/sign_up

@@ -4,6 +4,8 @@ class UserAddress < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
 
-  validates :user_postal_code, :user_prefecture_id, :user_city, :user_addresses,
+  validates :user_postal_code, :user_city, :user_addresses,
             :user_building, :user_phone_number, presence: true
+
+  # validates :prefecture_id, { other_than: 1, message: "can't be blank" }
 end
