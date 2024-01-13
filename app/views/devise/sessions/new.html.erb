@@ -38,5 +38,5 @@
   </div>
 </div>
 <% end %>
-
+<%= button_to "Googleで登録", user_google_oauth2_omniauth_authorize_path, data: { turbo: false } %>
 <%= render "shared/second-footer"%>
