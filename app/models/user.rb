@@ -31,6 +31,7 @@ class User < ApplicationRecord
   has_one :card, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments
+  has_one :user_address
 
   has_many :active_relationships, class_name: 'Relationship', foreign_key: :following_id
   has_many :followings, through: :active_relationships, source: :follower

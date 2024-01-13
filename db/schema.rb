@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_07_144646) do
-
+ActiveRecord::Schema[7.0].define(version: 2024_01_08_083813) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -111,6 +110,19 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_144646) do
     t.index ["purchase_record_id"], name: "index_shipping_addresses_on_purchase_record_id"
   end
 
+  create_table "user_addresses", charset: "utf8", force: :cascade do |t|
+    t.string "user_postal_code", null: false
+    t.integer "prefecture_id", null: false
+    t.string "user_city", null: false
+    t.text "user_addresses", null: false
+    t.text "user_building"
+    t.string "user_phone_number", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_addresses_on_user_id"
+  end
+
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "nickname", default: "", null: false
     t.string "email", default: "", null: false
@@ -138,4 +150,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_144646) do
   add_foreign_key "purchase_records", "items"
   add_foreign_key "purchase_records", "users"
   add_foreign_key "shipping_addresses", "purchase_records"
+  add_foreign_key "user_addresses", "users"
 end
