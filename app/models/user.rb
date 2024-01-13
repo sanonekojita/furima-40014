@@ -32,10 +32,7 @@ class User < ApplicationRecord
   has_one :card, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments
-<<<<<<< Updated upstream
-=======
   has_one :user_address, dependent: :destroy
->>>>>>> Stashed changes
 
   has_many :active_relationships, class_name: 'Relationship', foreign_key: :following_id
   has_many :followings, through: :active_relationships, source: :follower

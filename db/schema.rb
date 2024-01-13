@@ -10,12 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< Updated upstream
-ActiveRecord::Schema[7.0].define(version: 2024_01_07_144646) do
 
-=======
 ActiveRecord::Schema[7.0].define(version: 2024_01_13_081335) do
->>>>>>> Stashed changes
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -115,8 +111,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_13_081335) do
     t.index ["purchase_record_id"], name: "index_shipping_addresses_on_purchase_record_id"
   end
 
-<<<<<<< Updated upstream
-=======
   create_table "sns_credentials", charset: "utf8", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
@@ -139,7 +133,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_13_081335) do
     t.index ["user_id"], name: "index_user_addresses_on_user_id"
   end
 
->>>>>>> Stashed changes
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "nickname", default: "", null: false
     t.string "email", default: "", null: false
@@ -167,9 +160,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_13_081335) do
   add_foreign_key "purchase_records", "items"
   add_foreign_key "purchase_records", "users"
   add_foreign_key "shipping_addresses", "purchase_records"
-<<<<<<< Updated upstream
-=======
   add_foreign_key "sns_credentials", "users"
   add_foreign_key "user_addresses", "users"
->>>>>>> Stashed changes
+
 end
