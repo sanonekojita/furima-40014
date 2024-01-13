@@ -9,14 +9,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    @user = User.new(sign_up_params)
-    unless @user.valid?
-      render :new, status: :unprocessable_entity and return
+    if params[:sns_auth] == 'true'
+      pass = Devise.friendly_token
+      params[:user][:password] = pass
+      params[:user][:password_confirmation] = pass
+      super
+    else
+      @user = User.new(sign_up_params)
+      unless @user.valid?
+        render :new, status: :unprocessable_entity and return
+      end
+      session["devise.regist_data"] = {user: @user.attributes}
+      session["devise.regist_data"][:user]["password"] = params[:user][:password]
+      @user_address = @user.build_user_address
+      render :new_user_address, status: :accepted
     end
-   session["devise.regist_data"] = {user: @user.attributes}
-   session["devise.regist_data"][:user]["password"] = params[:user][:password]
-   @user_address = @user.build_user_address
-   render :new_user_address, status: :accepted
   end
 
   def create_user_address
@@ -29,6 +36,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.save
     session["devise.regist_data"]["user"].clear
     sign_in(:user, @user)
+
+    redirect_to root_path
   end
 
   private
