@@ -17,4 +17,6 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
   end
   resources :cards, only: [:new, :edit, :update, :create, :destroy]
+  resources :categories, only: [:new]
+  get '/category/:id', to: 'categories#search'
 end

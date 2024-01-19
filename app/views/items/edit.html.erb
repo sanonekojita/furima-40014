@@ -51,7 +51,13 @@ app/assets/stylesheets/items/new.css %>
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+        <div id="select-wrap">
+            <%= f.collection_select :category_id, @maincategories, :id, :name, {include_blank: "---"}, {id: "parent-category" } %>
+        </div>
+        <!-- 子カテゴリーのIDを設定するための非表示のフォームフィールド -->
+        <%= f.hidden_field :child_category_id, id: 'child-category-id' %>
+        <!-- 孫カテゴリーのIDを設定するための非表示のフォームフィールド -->
+        <%= f.hidden_field :grandchild_category_id, id: 'grandchild-category-id' %>
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>

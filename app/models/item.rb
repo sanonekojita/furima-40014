@@ -4,9 +4,9 @@ class Item < ApplicationRecord
   has_many_attached :images
   has_many :likes
   has_many :comments
+  has_many :categories
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category
   belongs_to :sales_status, class_name: 'SalesStatus'
   belongs_to :shipping_fee_status, class_name: 'ScheduledDelivery'
   belongs_to :prefecture
@@ -38,10 +38,20 @@ class Item < ApplicationRecord
              end
   }
 
-  validates :category_id, :sales_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id,
+  validate :validate_category_presence
+
+  validates :sales_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id,
             numericality: { other_than: 1, message: "can't be blank" }
 
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
+  end
+
+  private
+
+  def validate_category_presence
+    unless category_id.present? && child_category_id.present? && grandchild_category_id.present?
+      errors.add(:base, "カテゴリーは未選択にできません")
+    end
   end
 end
