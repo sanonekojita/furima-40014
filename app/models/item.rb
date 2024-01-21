@@ -50,8 +50,8 @@ class Item < ApplicationRecord
   private
 
   def validate_category_presence
-    unless category_id.present? && child_category_id.present? && grandchild_category_id.present?
-      errors.add(:base, "カテゴリーは未選択にできません")
-    end
+    return if category_id.present? && child_category_id.present? && grandchild_category_id.present?
+
+    errors.add(:base, 'カテゴリーは未選択にできません')
   end
 end

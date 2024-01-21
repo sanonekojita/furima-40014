@@ -75,5 +75,4 @@ class ItemsController < ApplicationController
   def set_maincategories
     @maincategories = Category.where(ancestry: nil)
   end
-
 end
