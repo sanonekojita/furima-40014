@@ -35,8 +35,16 @@
       </h1>
     </div>
     <%= link_to '新規登録', new_user_registration_path, class: "sign-up-red-btn" %>
+
   </div>
+
 </div>
 <% end %>
-<%= button_to "Googleで登録", user_google_oauth2_omniauth_authorize_path, data: { turbo: false } %>
+<div class='registration--main'>
+  <div class='form--wrap'>
+    <div class='google-btn'>
+      <%= button_to "Googleで登録", user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: "sign-up-white-btn" %>
+    </div>
+  </div>
+</div>
 <%= render "shared/second-footer"%>
