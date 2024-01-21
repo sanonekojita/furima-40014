@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema[7.0].define(version: 2024_01_13_081335) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_16_174704) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -48,6 +47,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_13_081335) do
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
+  create_table "categories", charset: "utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "ancestry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "comments", charset: "utf8", force: :cascade do |t|
     t.text "text"
     t.integer "user_id"
@@ -59,7 +65,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_13_081335) do
   create_table "items", charset: "utf8", force: :cascade do |t|
     t.string "item_name", null: false
     t.text "item_info", null: false
-    t.integer "category_id", null: false
     t.integer "sales_status_id", null: false
     t.integer "shipping_fee_status_id", null: false
     t.integer "prefecture_id", null: false
@@ -68,6 +73,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_13_081335) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id", null: false
+    t.bigint "child_category_id", null: false
+    t.bigint "grandchild_category_id", null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["child_category_id"], name: "index_items_on_child_category_id"
+    t.index ["grandchild_category_id"], name: "index_items_on_grandchild_category_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -154,6 +165,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_13_081335) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cards", "users"
+  add_foreign_key "items", "categories"
+  add_foreign_key "items", "categories", column: "child_category_id"
+  add_foreign_key "items", "categories", column: "grandchild_category_id"
   add_foreign_key "items", "users"
   add_foreign_key "likes", "items"
   add_foreign_key "likes", "users"
@@ -162,5 +176,4 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_13_081335) do
   add_foreign_key "shipping_addresses", "purchase_records"
   add_foreign_key "sns_credentials", "users"
   add_foreign_key "user_addresses", "users"
-
 end

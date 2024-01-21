@@ -62,7 +62,11 @@
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= Category.find(@item.category_id).name %></td>
+          <td class="detail-value">
+            <%= Category.find(@item.category_id).name %><br>
+            <%= Category.find(@item.child_category_id).name %><br>
+            <%= Category.find(@item.grandchild_category_id).name %>
+          </td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>

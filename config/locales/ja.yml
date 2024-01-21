@@ -59,7 +59,7 @@ ja:
               less_than_or_equal_to: "は9999999円以下でなければなりません"
               not_an_integer: "は整数でなければなりません"
             category_id:
-              other_than: "は未選択にできません"
+              blank: "は未選択にできません"
             sales_status_id:
               other_than: "は未選択にできません"
             shipping_fee_status_id:
@@ -79,7 +79,6 @@ ja:
         addresses: 番地
         building: 建物名
         phone_number: 電話番号
-        purchase_record_shipping_address:
     errors:
       models:
         purchase_record_shipping_address:
