@@ -1,6 +1,8 @@
 <%= render "shared/header" %>
 
-<div class="AccountPage">
+<% breadcrumb :users_edit %>
+
+<div class="Account__Page">
   <div class="AccountPage__title">
     <h1>ユーザー情報</h1>
   </div><br>
@@ -28,5 +30,5 @@
   <% end %>
 </div>
 <div>
-  <%= link_to "マイページへ戻る", user_path(current_user), class: "back" %>
+  <%= link_to "マイページへ戻る", user_path(current_user), class: "back_" %>
 </div>
