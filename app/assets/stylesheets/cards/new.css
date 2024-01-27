@@ -1,0 +1,75 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Breadcrumb Styles */
+.breadcrumbs {
+  margin-top: 10px;
+}
+
+.breadcrumbs a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Account Page Styles */
+.Account__Page {
+  margin: 20px 0;
+}
+
+.AccountPage__title h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Form Styles */
+.card--form {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form--wrap {
+  margin-bottom: 20px;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+.input--default {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Button Styles */
+.button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+/* Back Link Styles */
+.back_ {
+  display: block;
+  margin-top: 20px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.back_:hover {
+  text-decoration: underline;
+}

@@ -159,6 +159,9 @@ GEM
       i18n (>= 0.7)
       multi_json
       request_store (>= 1.0)
+    gretel (5.0.0)
+      actionview (>= 5.1, < 7.2)
+      railties (>= 5.1, < 7.2)
     hashie (5.0.0)
     http-accept (1.7.0)
     http-cookie (1.0.5)
@@ -443,6 +446,7 @@ DEPENDENCIES
   faker-japanese
   gimei
   gon
+  gretel
   image_processing (~> 1.2)
   importmap-rails
   jbuilder

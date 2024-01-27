@@ -1,0 +1,88 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Breadcrumb Styles */
+.breadcrumbs {
+  margin-top: 10px;
+}
+
+.breadcrumbs a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Account Page Styles */
+.Account__Page {
+  margin: 20px 0;
+}
+
+.AccountPage__title h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Form Styles */
+.AccountPage__form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.FormField {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.FormField__name {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.FormField__email {
+  flex: 1;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Button Styles */
+button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Back Link Styles */
+.back_ {
+  display: block;
+  margin-top: 20px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.back_:hover {
+  text-decoration: underline;
+}
