@@ -115,3 +115,5 @@ gem 'omniauth', '~>2.1.1'
 gem 'ancestry'
 
 gem "gretel"
+
+gem 'acts-as-taggable-on', '~> 9.0.1'

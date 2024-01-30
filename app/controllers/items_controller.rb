@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.tag_list.add(params[:tag_list], parse: true)
     if @item.save
       redirect_to root_path
     else
@@ -62,8 +63,9 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:item_name, :item_info,
                                  :sales_status_id, :shipping_fee_status_id,
                                  :prefecture_id, :scheduled_delivery_id,
-                                 :item_price, :category_id, :child_category_id,
-                                 :grandchild_category_id, { images: [] }).merge(user_id: current_user.id)
+                                 :item_price, :category_id,
+                                 :child_category_id, :grandchild_category_id,
+                                 :tag_list, { images: [] }).merge(user_id: current_user.id)
   end
 
   def move_to_sign_in

@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   has_many :likes
   has_many :comments
   has_many :categories
+  acts_as_taggable
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :sales_status, class_name: 'SalesStatus'
