@@ -53,8 +53,8 @@ label {
   margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="email"] {
+.FormField__name input[type="text"],
+.FormField__email input[type="email"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;

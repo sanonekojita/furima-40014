@@ -131,6 +131,24 @@
   margin-top: 2vh;
 }
 
+.tag-field {
+  margin-top: 20px;
+}
+
+.tag-field label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.tag-field input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
 /* /商品名と商品説明 */
 
 /* 商品の詳細など */
