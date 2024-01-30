@@ -69,6 +69,14 @@
           </td>
         </tr>
         <tr>
+          <th class="detail-item">タグ</th>
+          <td class="detail-value">
+            <% @item.tag_list.each do |tag| %>
+              <span class="tag"><%= tag %></span>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
           <th class="detail-item">商品の状態</th>
           <td class="detail-value"><%= SalesStatus.find(@item.sales_status_id).name %></td>
         </tr>
