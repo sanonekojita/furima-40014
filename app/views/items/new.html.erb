@@ -40,7 +40,8 @@
       </div>
       <div class="tag-field">
         <%= f.label :tag_list %>
-        <%= f.text_field :tag_list %>
+        <%= f.text_field :tag_list, id: 'item_tag_list' %>
+        <div id="tag-search-result"></div>
       </div>
     </div>
     <%# /商品名と商品説明 %>
