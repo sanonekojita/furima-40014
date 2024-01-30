@@ -53,6 +53,11 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
+  def tag_search
+    tags = ActsAsTaggableOn::Tag.where('name LIKE ?', "%#{params[:q]}%")
+    render json: { tags: tags.pluck(:name) }
+  end
+
   private
 
   def set_item
