@@ -9,9 +9,9 @@ class Item < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :sales_status, class_name: 'SalesStatus'
-  belongs_to :shipping_fee_status, class_name: 'ScheduledDelivery'
+  belongs_to :shipping_fee_status, class_name: 'ShippingFeeStatus'
   belongs_to :prefecture
-  belongs_to :scheduled_delivery, class_name: 'ShippingFeeStatus'
+  belongs_to :scheduled_delivery, class_name: 'ScheduledDelivery'
 
   validates :images, presence: true, length: { in: 1..5, message: 'must be at least 1 and no more than 5' }
   validates :item_name, :item_info, :item_price, presence: true
@@ -46,6 +46,14 @@ class Item < ApplicationRecord
 
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["base_tags", "categories", "comments", "images_attachments", "images_blobs", "likes", "prefecture", "purchase_record", "sales_status", "scheduled_delivery", "shipping_fee_status", "tag_taggings", "taggings", "tags", "user"]
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["category_id", "child_category_id", "created_at", "grandchild_category_id", "id", "item_info", "item_name", "item_price", "prefecture_id", "sales_status_id", "scheduled_delivery_id", "shipping_fee_status_id", "updated_at", "user_id"]
   end
 
   private

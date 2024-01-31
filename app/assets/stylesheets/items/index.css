@@ -250,15 +250,17 @@ a {
   background-color: #FFF;
 }
 
-
 .item-img-content {
   position: relative;
+  height: 70%; /* 親要素 .list に合わせる */
 }
 
 .item-img {
-  width: 33vh;
-  height: 33vh;
+  width: 100%; /* 画像を親要素に合わせて100%の幅にする */
+  height: 70%; /* 親要素 .item-img-content に合わせる */
   object-fit: cover;
+  border-radius: 8px; /* 任意の角丸のサイズ */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 任意の影の設定 */
 }
 
 .sold-out {

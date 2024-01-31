@@ -22,7 +22,7 @@
 
 .search-form {
   width: 65vw;
-  height: 5vh;
+  height: 5.5vh;
   display: flex;
   margin-bottom: 5px;
 }
@@ -34,11 +34,12 @@
 }
 
 .search-button {
-  width: 5vh;
+  width: 5.5vh;
   border: 0;
   cursor: pointer;
   background-color: #3ccace;
   padding: 8px;
+  border-radius: 4px;
 }
 
 .search-icon {

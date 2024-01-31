@@ -1,0 +1,51 @@
+.search-page-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.item-contents {
+  margin-top: 20px;
+}
+
+.search-field {
+  margin-bottom: 15px;
+}
+
+.item-lists {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.list {
+  width: 37vh;
+  padding: 1vw;
+  background-color: #FFF;
+  margin: 0 10px 10px 0;
+}
+
+.posted-content {
+  text-align: center;
+}
+
+#detailed-search-form {
+  margin-bottom: 20px;
+}
+
+/* アイテム画像のスタイル */
+.item-img {
+  width: 100%; /* 画像を親要素に合わせて100%の幅にする */
+  height: auto; /* アスペクト比を維持するために自動的に高さを調整 */
+  object-fit: cover;
+  border-radius: 8px; /* 任意の角丸のサイズ */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 任意の影の設定 */
+}
+
+.item--name {
+  font-size: 2.5vh;
+  margin-left: 30px;
+}

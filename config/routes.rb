@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   end
   root to: "items#index"
   resources :items do
-    get 'tag_search', on: :collection
+    collection do
+      get 'search'
+      get 'tag_search'
+    end
     resources :purchase_records, only: [:index, :create]
     resource :likes, only: [:create, :destroy]
     resources :comments, only: :create
