@@ -132,7 +132,7 @@
       <% if @items.present? %>
         <% @items.each do |item| %>
           <li class='list'>
-            <%= link_to item_path(item) do %>
+            <%= link_to item_path(item), data: {turbo: false} do %>
 
               <div class='item-img-content'>
                 <%= image_tag item.images[0], class: "item-img" if item.images.attached? %>

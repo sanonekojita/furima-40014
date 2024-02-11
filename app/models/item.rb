@@ -48,12 +48,14 @@ class Item < ApplicationRecord
     likes.where(user_id: user.id).exists?
   end
 
-  def self.ransackable_associations(auth_object = nil)
-    ["base_tags", "categories", "comments", "images_attachments", "images_blobs", "likes", "prefecture", "purchase_record", "sales_status", "scheduled_delivery", "shipping_fee_status", "tag_taggings", "taggings", "tags", "user"]
+  def self.ransackable_associations(_auth_object = nil)
+    %w[base_tags categories comments images_attachments images_blobs likes prefecture purchase_record
+       sales_status scheduled_delivery shipping_fee_status tag_taggings taggings tags user]
   end
 
-  def self.ransackable_attributes(auth_object = nil)
-    ["category_id", "child_category_id", "created_at", "grandchild_category_id", "id", "item_info", "item_name", "item_price", "prefecture_id", "sales_status_id", "scheduled_delivery_id", "shipping_fee_status_id", "updated_at", "user_id"]
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[category_id child_category_id created_at grandchild_category_id id item_info item_name item_price
+       prefecture_id sales_status_id scheduled_delivery_id shipping_fee_status_id updated_at user_id]
   end
 
   private

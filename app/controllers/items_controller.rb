@@ -60,7 +60,7 @@ class ItemsController < ApplicationController
       # squishメソッドで余分なスペースを削除する
       squished_keywords = params[:q][:item_name].squish
       ## 半角スペースを区切り文字として配列を生成し、paramsに入れる
-      params[:q][:item_name_cont_any] = squished_keywords.split(" ")
+      params[:q][:item_name_cont_any] = squished_keywords.split(' ')
     end
     @q = Item.ransack(params[:q])
     @items = @q.result
